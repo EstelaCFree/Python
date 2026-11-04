@@ -14,4 +14,5 @@ print(str('Bienvenide, ' + nombre + ' ' + apellido + ' con ' + edad + ' años'))
 print('Bienvenide ', nombre, apellido, 'que tienes', edad, 'años')
 
 #otra forma es con f'literal {variable}'
+#con la f todo lo que va entre comillas se imprime y todo lo que va entre llaves son variables
 print(f'Bienvenide {nombre} {apellido} que tienes {edad} años') 
