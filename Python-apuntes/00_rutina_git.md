@@ -65,6 +65,8 @@ git merge upstream/main
 
 git push origin main
 
+(Si pide mensaje para el commit con el editor de texto, le das a ESC y luego escribes :wq que es write y quit)
+
 ---
 
 ## Recordatorios
