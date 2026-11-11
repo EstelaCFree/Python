@@ -33,7 +33,7 @@ Guardar y subir mis apuntes y ejercicios:
 
 git add Python-apuntes/
 
-git commit -m "Apuntes y ejercicios de clase"
+git commit -m "Módulo 1 terminado e inicio del 2"
 
 git push origin main
 
