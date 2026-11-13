@@ -21,5 +21,7 @@ print(num)
 resultado = 0
 
 for num in numeros:
-    resultado += num
+    resultado += num # o resultado = resultado + num
+
+print('Resultado', resultado)
 

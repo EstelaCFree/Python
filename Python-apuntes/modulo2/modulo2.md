@@ -60,5 +60,27 @@ la variable unitaria se le llama variable auxiliar y te inventas esa variable, p
 
 ver ejercicio 2-13
 
+#RANGOS - eange
+
+Es un generador de números
+range(inicio, final, salto)
+El número final no está incluido.
+Si sólo pones el final, empezará en cero y saltará de uno en uno
+Si queremos mostrar los números del 0 al 9:
+
+for numero in range(10):
+    print(numero)
+
+esto va a poner un número dbajo del otro, con saltos de líneas.
+
+Mirar ejercicio2-14 al 16 (que se van anidando bucles o se unen a condicionales)
+
+BREAK
+Ejemplo de un break rompiendo un bucle en ejercicio 2-17 
+CONTINUE
+Rompe la iteración actual pero sigue con la siguiente iteración del bucle, más inmediato
+
+
+
 
 

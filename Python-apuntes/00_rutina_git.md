@@ -14,9 +14,11 @@ git pull --ff-only origin main
 
 git fetch upstream
 
-git merge upstream/main
+git merge upstream/main -m "Actualizar desde la profesora"
 
 git push origin main
+
+(El `-m` es imprescindible: sin él, Git abre un editor para pedir el mensaje. Ver «Si se abre el editor» abajo.)
 
 ## 2. Durante la clase
 
@@ -33,7 +35,7 @@ Guardar y subir mis apuntes y ejercicios:
 
 git add Python-apuntes/
 
-git commit -m "Módulo 1 terminado e inicio del 2"
+git commit -m "Módulo 2 y bucles"
 
 git push origin main
 
@@ -61,11 +63,24 @@ Si también quiero actualizar los materiales de la profesora:
 
 git fetch upstream
 
-git merge upstream/main
+git merge upstream/main -m "Actualizar desde la profesora"
 
 git push origin main
 
-(Si pide mensaje para el commit con el editor de texto, le das a ESC y luego escribes :wq que es write y quit)
+---
+
+## Si se abre el editor (Vim) y no puedo salir
+
+Pasa si hago `git merge` o `git commit` sin `-m "mensaje"`.
+
+1. Pulsar `ESC`.
+2. Escribir `:wq` y pulsar `Enter` (guarda y sale; el merge se completa con el mensaje por defecto).
+
+Si en lugar del texto aparece **«ATTENTION / Found a swap file»** (pasa cuando la vez anterior se cerró la terminal con Vim abierto): pulsar `D` (Delete it) y seguir con los pasos 1–2.
+
+Si ya cerré la terminal y `git status` dice **«All conflicts fixed but you are still merging»**:
+
+git commit -m "Actualizar desde la profesora"
 
 ---
 
