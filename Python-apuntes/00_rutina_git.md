@@ -4,6 +4,8 @@
 
 Abrir la terminal en la carpeta `Python-clase`.
 
+cd Python-clase
+
 Comprobar que no hay cambios pendientes:
 
 git status
@@ -33,9 +35,11 @@ git status
 
 Guardar y subir mis apuntes y ejercicios:
 
+cd Python-clase
+
 git add Python-apuntes/
 
-git commit -m "Módulo 2 y bucles"
+git commit -m "Sigue modulo2 y cierra 1 con apuntes enriquecidos"
 
 git push origin main
 

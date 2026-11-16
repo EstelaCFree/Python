@@ -80,6 +80,19 @@ Ejemplo de un break rompiendo un bucle en ejercicio 2-17
 CONTINUE
 Rompe la iteración actual pero sigue con la siguiente iteración del bucle, más inmediato
 
+##BUCLE WHILE
+
+Bucles indeterminados
+Siguen hasta que la condición deja de ser true
+Tiene que tener posibilidad de que tenga fin para no entrar en un bucle infinito.
+
+empiezan en el ejercicio 2-23
+interesante el 2-26 con bucle, match e if
+
+PASS
+pones pass en un punto y salta, como que no hace nada en esa opción, por ejemplo un case.
+
+En los ejercicios 2-27 al 29 también hay ejemplos con generación de números aleatorios (random)
 
 
 
