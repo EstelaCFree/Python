@@ -39,7 +39,7 @@ cd Python-clase
 
 git add Python-apuntes/
 
-git commit -m "Sigue modulo2 y cierra 1 con apuntes enriquecidos"
+git commit -m "Apuntes completos de modulo2"
 
 git push origin main
 
