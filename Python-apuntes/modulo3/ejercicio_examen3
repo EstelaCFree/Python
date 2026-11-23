@@ -1,0 +1,30 @@
+'''
+Un almacén de repuestos quiere organizar su stock utilizando estructuras de datos avanzadas de Python.
+Requerimientos de Ejecución:
+1. Crear un diccionario donde las claves sean nombres de productos y los valores sus cantidades.
+2. Definir una función llamada actualizar_stock que reciba el diccionario, el nombre del producto y la cantidad a sumar.
+3. Añadir 3 productos iniciales.
+4. Llamar a la función para modificar uno de ellos y mostrar el diccionario final.
+'''
+
+# 1.
+stock = {}
+
+# 2. 
+def actualizar_stock(inventario, producto, cantidad):
+    # Si el producto ya existe, suma, si no se añade
+    if producto in inventario:
+        inventario[producto] += cantidad
+    else:
+        inventario[producto] = cantidad
+
+# 3.
+# Añadir productos nuevos directamente
+stock['filtro de aire'] = 20
+stock['pastillas de freno'] = 15
+# Añadir productos nuevos también puede ser con la función
+actualizar_stock(stock, 'aceite de motor', 35)
+
+# 4. 
+actualizar_stock(stock, 'aceite de motor', 10)
+print(stock)

@@ -39,7 +39,7 @@ cd Python-clase
 
 git add Python-apuntes/
 
-git commit -m "Apuntes completos de modulo2"
+git commit -m "Inicio modulo 3 y apuntes funciones"
 
 git push origin main
 

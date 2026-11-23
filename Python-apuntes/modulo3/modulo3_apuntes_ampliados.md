@@ -1,16 +1,16 @@
 # Módulo 3 · Funciones y colecciones
 
-Apuntes ampliados a partir de la guía de Ana Isabel Vegas, `Ejemplo06_Funciones.zip`, las explicaciones de recuperación de clase y tus notas. Actualización: 18 de noviembre de 2026.
+Apuntes ampliados a partir de la guía de Ana Isabel Vegas, los ZIP 06–10, las explicaciones de recuperación de clase y tus notas. Actualización: 23 de noviembre de 2026.
 
-**Estado:** desarrollada la parte de funciones. La parte de colecciones queda pendiente de integrar a medida que avance la clase. Este documento no constituye todavía los apuntes completos del módulo 3.
+**Estado:** módulo 3 integrado con todo el material disponible: ocho archivos de funciones y ocho de colecciones. Incluye las ampliaciones del ejemplo 06, listas, tuplas, conjuntos y diccionarios. Las explicaciones amplían los ejemplos para que puedas seguirlos sin haber asistido a todas las clases.
 
-**Alcance actual:** funciones del ZIP 06 y páginas 35–37 del PDF. La guía continúa con listas, tuplas, conjuntos y diccionarios en las páginas 38–43. Se añaden aplicaciones a automatización e IA sin introducir todavía llamadas a servicios, archivos ni gestión de excepciones.
+**Alcance:** módulo 3 del PDF, portada en p. 34 y contenido en pp. 35–43. Funciones: pp. 35–37 y ZIP 06; listas: pp. 38–40 y ZIP 07; tuplas: p. 41 y ZIP 08; conjuntos: p. 42 y ZIP 09; diccionarios: p. 43 y ZIP 10. El módulo 4 empieza en p. 44: excepciones, importaciones y paquetes quedan para después. Las ampliaciones de los ZIP, como las comprensiones de listas, se integran en su tema.
 
 **Cómo leerlo:** las notas **Aclaración** explican matices; las **Correcciones del material** identifican discrepancias; los **Complementos opcionales** amplían lo necesario para tus proyectos. El contenido de la guía que no aparece en el ZIP se identifica expresamente. No se presupone qué se explicó oralmente ni qué entrará en el examen.
 
 Se conserva tu archivo [modulo3.md](modulo3.md), incluidos sus apuntes de listas. Los ejemplos se han adaptado para facilitar el estudio; no se han modificado los archivos de clase. Cada bloque Python de estos apuntes incluye lo necesario para ejecutarlo por separado.
 
-## Índice de la parte de funciones
+## Índice
 
 1. [Qué es una función y para qué sirve](#1-qué-es-una-función-y-para-qué-sirve)
 2. [Definir, llamar y seguir la ejecución](#2-definir-llamar-y-seguir-la-ejecución)
@@ -21,11 +21,24 @@ Se conserva tu archivo [modulo3.md](modulo3.md), incluidos sus apuntes de listas
 7. [Ejercicio 2: precio con descuento](#7-ejercicio-2-precio-con-descuento)
 8. [Ejercicio 3: contar vocales](#8-ejercicio-3-contar-vocales)
 9. [Ejercicio 4: área de un triángulo](#9-ejercicio-4-área-de-un-triángulo)
-10. [Dos ampliaciones de la guía: tuplas y argumentos variables](#10-dos-ampliaciones-de-la-guía-tuplas-y-argumentos-variables)
+10. [Funciones ampliadas: varios retornos, argumentos variables y medias](#10-funciones-ampliadas-varios-retornos-argumentos-variables-y-medias)
 11. [Función y método: puente hacia las listas](#11-función-y-método-puente-hacia-las-listas)
 12. [Funciones útiles para tu ámbito](#12-funciones-útiles-para-tu-ámbito)
 13. [Cómo revisar funciones y comprobar resultados](#13-cómo-revisar-funciones-y-comprobar-resultados)
-14. [Mapa del material y próximos pasos](#14-mapa-del-material-y-próximos-pasos)
+14. [Mapa de funciones y conexión con colecciones](#14-mapa-de-funciones-y-conexión-con-colecciones)
+15. [Elegir una colección](#15-elegir-una-colección)
+16. [Listas: crear, consultar y modificar](#16-listas-crear-consultar-y-modificar)
+17. [Recorridos y else en bucles](#17-recorridos-y-else-en-bucles)
+18. [Slices: elegir fragmentos](#18-slices-elegir-fragmentos)
+19. [Ejercicio completo de colores](#19-ejercicio-completo-de-colores)
+20. [Listas multidimensionales](#20-listas-multidimensionales)
+21. [Comprensiones de listas](#21-comprensiones-de-listas)
+22. [Tuplas y operaciones compartidas](#22-tuplas-y-operaciones-compartidas)
+23. [Conjuntos y operaciones de conjuntos](#23-conjuntos-y-operaciones-de-conjuntos)
+24. [Diccionarios: registros con claves](#24-diccionarios-registros-con-claves)
+25. [Funciones y objetos mutables](#25-funciones-y-objetos-mutables)
+26. [Aplicaciones integradas a tus proyectos](#26-aplicaciones-integradas-a-tus-proyectos)
+27. [Repaso, correcciones y fuentes](#27-repaso-correcciones-y-fuentes)
 
 ## Parte I · Funciones
 
@@ -158,7 +171,7 @@ print(resultado)  # 9
 
 Los nombres de fuera y de dentro no tienen que coincidir. En las llamadas posicionales, la correspondencia depende del orden.
 
-Una función con dos parámetros obligatorios necesita dos argumentos. Una llamada como `sumar()` o `sumar(7)` produce `TypeError`. Pasar más argumentos de los admitidos también puede producirlo; la excepción es cuando la función está definida para recibirlos, como veremos con `*valores`.
+Una función con dos parámetros obligatorios necesita que se proporcionen ambos. Una llamada como `sumar()` o `sumar(7)` produce `TypeError`. Pasar más argumentos de los admitidos también puede producirlo; la excepción es cuando la función está definida para recibirlos, como veremos con `*valores`.
 
 ### 3.2. Anotaciones de tipo
 
@@ -181,7 +194,7 @@ Anotar `dato: int = "7"` no transforma ese texto en un entero. Para convertirlo 
 
 ### 3.3. Argumentos por nombre y valores por defecto
 
-**Complemento opcional de uso práctico.** No aparece desarrollado en los ejercicios del ZIP, pero ayuda a entender llamadas habituales en código generado por IA.
+**Ahora también aparece en clase:** el ZIP actualizado incluye `args_defecto.py`. Esta forma ya no se trata solo como una ampliación opcional.
 
 ```python
 def calcular_precio(precio: float, dto: float = 0) -> float:
@@ -196,6 +209,29 @@ print(calcular_precio(dto=20, precio=100))    # 80.0
 `dto=0` en la definición proporciona un valor si se omite ese argumento. En una llamada como `calcular_precio(dto=20, precio=100)`, los nombres indican la correspondencia y permiten cambiar el orden de esos argumentos.
 
 No confundas un valor por defecto con una asignación dentro del cuerpo. Si escribieras `dto = 0` dentro de la función antes del cálculo, sobrescribirías el descuento recibido en cada llamada.
+
+### 3.4. El nuevo ejemplo args_defecto.py
+
+```python
+def datos_trabajador(nombre, estado_civil="soltero", sueldo=21000):
+    print(f"{nombre} esta {estado_civil} y gana {sueldo}")
+
+datos_trabajador("Juan")
+datos_trabajador("Maria", sueldo=25000)
+datos_trabajador("Antonio", sueldo=30000)
+datos_trabajador("Antonio", "casado", 30000)
+```
+
+| Llamada | nombre | estado_civil | sueldo |
+|---|---|---|---|
+| `datos_trabajador("Juan")` | Juan | soltero | 21000 |
+| `datos_trabajador("Maria", sueldo=25000)` | Maria | soltero | 25000 |
+| `datos_trabajador("Antonio", sueldo=30000)` | Antonio | soltero | 30000 |
+| `datos_trabajador("Antonio", "casado", 30000)` | Antonio | casado | 30000 |
+
+`nombre` es obligatorio; los otros dos parámetros tienen valores por defecto. Pasar `sueldo=25000` permite cambiar ese dato sin tener que pasar también el estado civil. En cambio, `datos_trabajador("Maria", 25000)` colocaría el número en `estado_civil`, porque ocupa la segunda posición.
+
+**Aclaración al comentario del archivo:** «por kwargs» se refiere aquí a argumentos por nombre. La función no utiliza un parámetro `**kwargs` que recoja nombres arbitrarios. Solo acepta los parámetros declarados. No puedes pasar `edad=30` si no está previsto en su definición.
 
 ## 4. La diferencia entre print y return
 
@@ -294,7 +330,7 @@ print(nuevo_precio)  # 90.0
 
 La asignación interna asocia el parámetro local a otro valor. No reasigna la variable `precio` del programa principal.
 
-**Puente hacia las colecciones:** una lista puede modificarse a través de una referencia compartida. Eso es distinto de reasignar un parámetro a un número y se desarrollará en la parte de listas. No generalices este ejemplo diciendo que «una función nunca puede cambiar un objeto recibido».
+**Puente hacia las colecciones:** una lista puede modificarse a través de una referencia compartida. Eso es distinto de reasignar un parámetro a un número y se desarrolla en la sección 25. No generalices este ejemplo diciendo que «una función nunca puede cambiar un objeto recibido».
 
 Por ahora, intenta que las funciones de cálculo reciban los datos necesarios por parámetros y devuelvan resultados. Así no dependen de que una variable global tenga cierto nombre o haya sido preparada antes.
 
@@ -522,9 +558,9 @@ La base y la altura deben estar expresadas en la misma unidad; el área resultar
 
 No hace falta repetir el `input` para usar la función en otro contexto: se puede llamar como `area_triangulo(10, 5)` y recoger `25.0` desde cualquier parte donde esté disponible.
 
-## 10. Dos ampliaciones de la guía: tuplas y argumentos variables
+## 10. Funciones ampliadas: varios retornos, argumentos variables y medias
 
-**Origen y alcance:** estos dos temas están en las páginas 36–37 del PDF, pero no aparecen desarrollados en el ZIP 06. Se incluyen para recoger la parte de funciones de la guía. No se da por hecho que se explicaran durante la sesión a la que faltaste. La colección correspondiente se ampliará después.
+**Actualización:** las pp. 36–37 del PDF se desarrollan ahora también en `return_varios.py` y `numero_variable_args.py`. Este último incorpora un ejercicio de medias que combina parámetros obligatorios, argumentos variables, llamadas entre funciones y retorno de una tupla.
 
 ### 10.1. Retornar más de un resultado
 
@@ -567,7 +603,80 @@ print(sumar_varios())                       # 0
 
 Con cero argumentos, el recorrido está vacío y se conserva el acumulador inicial, cero. Con varios, se suman todos. Se esperan valores numéricos compatibles con la suma; el asterisco no valida su contenido.
 
-No necesitamos introducir todavía `**kwargs`, desempaquetados más complejos ni combinaciones avanzadas de parámetros.
+El archivo actualizado utiliza también el desempaquetado en una llamada, `sumar(*notas)`, que se explica a continuación. `**kwargs` y otras combinaciones avanzadas no son necesarios para estos ejemplos.
+
+### 10.3. El nuevo return_varios.py: procesar un texto
+
+```python
+def procesar_texto(texto: str) -> tuple:
+    return texto.upper(), texto.lower(), len(texto)
+
+mayusculas, minusculas, longitud = procesar_texto("Hola, que tal?")
+print(mayusculas)  # HOLA, QUE TAL?
+print(minusculas)  # hola, que tal?
+print(longitud)    # 14
+
+resultado = procesar_texto("Hola, que tal?")
+print(resultado[0])
+print(resultado[1])
+print(resultado[2])
+
+for elemento in resultado:
+    print(elemento)
+```
+
+La función devuelve una tupla de tres elementos: texto en mayúsculas, texto en minúsculas y longitud. Los espacios y signos también cuentan en `len`, por eso la longitud es catorce.
+
+Hay dos formas de recoger exactamente la misma salida: desempaquetarla en tres nombres o guardarla en una variable y acceder por índices. El recorrido final visita los tres elementos completos, no las letras del texto original. La tupla puede contener elementos de tipos distintos: dos cadenas y un entero.
+
+### 10.4. Asterisco en la definición y en la llamada
+
+| Forma | Qué hace |
+|---|---|
+| `def sumar(*numeros):` | Recoge los argumentos posicionales en una tupla. |
+| `sumar(*notas)` | Desempaqueta un iterable para entregar sus elementos como argumentos separados. |
+| `sumar(notas)` | Entrega un único argumento: la tupla completa. No equivale al anterior. |
+
+Si `notas` contiene `(6, 9)`, `sumar(*notas)` equivale a `sumar(6, 9)`. En la versión sumadora de clase, `sumar(notas)` intentaría sumar cero y una tupla, lo que produce `TypeError`.
+
+### 10.5. Ejercicio nuevo: nombre y media de notas
+
+Versión adaptada del archivo, quitando solo la impresión de diagnóstico de `sumar`:
+
+```python
+def sumar(*numeros):
+    total = 0
+    for numero in numeros:
+        total += numero
+    return total
+
+def calcular_media(nombre: str, *notas) -> tuple:
+    if len(notas) > 0:
+        nota_media = sumar(*notas) / len(notas)
+    else:
+        nota_media = 0
+    return nombre.upper(), nota_media
+
+print(calcular_media("Jorge"))
+print(calcular_media("Jorge", 6))
+print(calcular_media("Jorge", 6, 9))
+print(calcular_media("Jorge", 6, 9, 7, 8, 5, 8))
+```
+
+| Llamada | Tupla notas | Resultado |
+|---|---|---|
+| Sin notas | `()` | `('JORGE', 0)` |
+| Una nota | `(6,)` | `('JORGE', 6.0)` |
+| Dos notas | `(6, 9)` | `('JORGE', 7.5)` |
+| Seis notas | `(6, 9, 7, 8, 5, 8)` | `('JORGE', 7.166666666666667)` |
+
+En la llamada con dos notas, `nombre` recibe `"Jorge"`, `notas` recibe `(6, 9)`, `sumar(*notas)` devuelve quince y `len(notas)` devuelve dos. Después se retorna la tupla con el nombre en mayúsculas y la media.
+
+La rama sin notas evita dividir entre cero. **Devolver cero es la política del ejercicio**, no una media calculada de observaciones existentes. En una aplicación convendría distinguir «sin notas» y «media cero», por ejemplo mediante un resultado estructurado; se retoma en la sección 26.
+
+En el original, `sumar` contiene `print(type(numeros))`. Por eso aparecen mensajes `<class 'tuple'>` además de los resultados. Esos mensajes los imprime la función; no son parte de la tupla que devuelve `calcular_media`.
+
+**Matiz al enunciado:** en las firmas de este ejercicio, `*notas` va después del nombre obligatorio. Python admite parámetros posteriores que deben pasarse por nombre; decir que el asterisco «siempre tiene que ir al final» no es una regla general del lenguaje. No hace falta ampliar esas firmas para resolver este caso.
 
 ## 11. Función y método: puente hacia las listas
 
@@ -598,7 +707,7 @@ Este ejemplo conecta con `return`: `append` modifica la lista y devuelve `None`.
 
 **Matiz:** no todo método modifica el objeto. `texto.lower()` devuelve otro texto y no modifica la cadena original. La operación concreta determina si devuelve un resultado, cambia un objeto o hace ambas cosas. Una expresión con punto también puede acceder a un atributo; no basta ver un punto para concluir que se está llamando a un método.
 
-El comportamiento de `append`, índices y otras operaciones se desarrollará en la parte de colecciones, junto con tus apuntes actuales de listas.
+El comportamiento de `append`, índices y otras operaciones se desarrolla en las secciones 16–21, junto con tus apuntes de listas.
 
 ## 12. Funciones útiles para tu ámbito
 
@@ -687,7 +796,7 @@ Prioriza parámetros claros, diferencias entre mostrar y devolver, cobertura de 
 
 | Tema | Cuándo incorporarlo |
 |---|---|
-| Funciones que reciben listas o devuelven diccionarios | Al completar las colecciones de este módulo. |
+| Funciones que reciben listas o devuelven diccionarios | Ya se practica en las secciones 25–26 de este módulo. |
 | Limpieza y normalización de textos en detalle | Métodos de cadenas del módulo 4; `lower` se usa ahora porque aparece en clase. |
 | Comunicar y recuperar errores | Excepciones del módulo 4. |
 | Repartir funciones entre archivos e importarlas | Módulos e importaciones del módulo 4. |
@@ -756,7 +865,7 @@ Estas comprobaciones sirven para contrastar resultados después de un cambio. En
 - Al terminar sin un resultado explícito se devuelve `None`.
 - El contrato real se descubre leyendo todas las ramas, no solo el nombre o la anotación.
 
-## 14. Mapa del material y próximos pasos
+## 14. Mapa de funciones y conexión con colecciones
 
 ### 14.1. Qué aporta cada archivo del ZIP
 
@@ -767,26 +876,945 @@ Estas comprobaciones sirven para contrastar resultados después de un cambio. En
 | `ejercicio2.py` | Cálculo reutilizable con dos parámetros y retorno numérico. | Expresar el porcentaje en la unidad esperada. |
 | `ejercicio3.py` | Texto, bucle, contador y retorno. | `lower` no elimina tildes y el contador se devuelve al finalizar. |
 | `ejercicio4.py` | Separación de entrada, cálculo y presentación. | `:.2f` es presentación; las unidades deben ser coherentes. |
+| `args_defecto.py` | Valores por defecto y argumentos por nombre. | Argumentos por nombre no significa que se haya definido `**kwargs`. |
+| `return_varios.py` | Tupla con mayúsculas, minúsculas y longitud. | Se puede desempaquetar o conservar la tupla. |
+| `numero_variable_args.py` | `*numeros`, `*notas`, desempaquetado y media. | Distinguir notas vacías, retorno y mensajes de diagnóstico. |
 
-### 14.2. Fuentes de estos apuntes
+### 14.2. Lo que añade la segunda parte
 
-- [Guía IFCD0062 Fundamentos programacion Python.pdf](<../../IFCD0062 Fundamentos programacion Python.pdf>): funciones en pp. 35–37; se ha consultado la distribución posterior para delimitar ampliaciones.
-- [Ejemplo06_Funciones.zip](../../Ejemplo06_Funciones.zip): introducción y cuatro ejercicios completos. Según lo indicado en clase, no se esperan ampliaciones de este ZIP.
-- [modulo3.md](modulo3.md): tus notas actuales y el comienzo de colecciones. Se conservan para continuar integrando el módulo.
-- [Apuntes ampliados del módulo 2](../modulo2/modulo2_apuntes_ampliados.md): control de flujo, estado y bucles que ahora se encapsulan en funciones.
-- [MASTER-PERSONALIZADO-IA.md](../../../../MASTER-PERSONALIZADO-IA.md) y [ENCAJE-TECNOFOR-MASTER.md](../../../../ENCAJE-TECNOFOR-MASTER.md): orientación de las aplicaciones y de los temas que se posponen.
+Las colecciones permiten recibir y devolver grupos de datos: listas de tareas, tuplas de resultados, conjuntos de identificadores o diccionarios que representan registros. Las funciones ya explicadas se reutilizan con esas estructuras. El mapa de todos los archivos y las fuentes está al final del documento.
 
-Apoyo para consultar matices, sin lectura adicional obligatoria:
+## Parte II · Colecciones
 
-- [Tutorial oficial: definición de funciones, parámetros y retornos](https://docs.python.org/es/3.14/tutorial/controlflow.html#defining-functions).
-- [Documentación oficial: las anotaciones no se exigen en ejecución](https://docs.python.org/es/3.14/library/typing.html).
+## 15. Elegir una colección
 
-## Parte II · Colecciones — pendiente de integración
+Una colección agrupa datos. Elegir el tipo determina cómo accedemos a ellos, si conservan un orden y qué cambios permiten.
 
-La clase ha empezado con listas. Esta parte se completará con las prácticas y tus comentarios cuando haya material suficiente para ordenar el conjunto.
+| Tipo | Ejemplo | Acceso | ¿Mutable? | Repeticiones |
+|---|---|---|---|---|
+| Lista, `list` | `["Vera", "Noa"]` | Índices y slices. | Sí. | Permite elementos repetidos. |
+| Tupla, `tuple` | `("lunes", "martes")` | Índices y slices. | No se reasignan sus posiciones. | Permite elementos repetidos. |
+| Conjunto, `set` | `{"a", "b"}` | Pertenencia y recorrido, sin índice. | Sí. | Conserva elementos únicos. |
+| Diccionario, `dict` | `{"nombre": "Vera", "nota": 8}` | Claves. | Sí. | Claves únicas; valores repetidos permitidos. |
 
-Quedan por integrar las listas y sus operaciones, las tuplas, los conjuntos y los diccionarios de las páginas 38–43, junto con ejemplos de colecciones como entradas y salidas de funciones. El puente mínimo sobre `append`, `len`, tuplas y `*valores` de la parte I no sustituye ese desarrollo.
+**Ordenada no significa ordenada alfabéticamente.** En una lista o tupla, los elementos tienen posiciones. Un diccionario conserva el orden de inserción de las claves en Python 3.7 y posteriores. Un conjunto no ofrece un orden de recorrido garantizado.
 
-También queda anotada para el repaso de bucles tu duda sobre `else` en `for` y `while`. Al integrarla habrá que precisar que esa cláusula se ejecuta cuando el bucle termina sin un `break`, no simplemente por estar escrita después de un recorrido.
+| Vacío que necesitas | Cómo crearlo |
+|---|---|
+| Lista | `[]` o `list()` |
+| Tupla | `()` o `tuple()` |
+| Conjunto | `set()` |
+| Diccionario | `{}` o `dict()` |
 
-El PDF del módulo se preparará cuando estén desarrolladas e integradas ambas partes.
+`{}` crea un diccionario, no un conjunto vacío. En un literal de diccionario se separan claves y valores con `:`; las llaves de un conjunto contienen solo elementos.
+
+### 15.1. Los textos no son listas
+
+**Corrección de tus notas:** una cadena `str` es una secuencia de texto, no una lista. Comparte operaciones como `len`, índices, slices y recorridos, pero es inmutable y no tiene los mismos métodos.
+
+```python
+texto = "mesa"
+letras = ["m", "e", "s", "a"]
+
+print(texto[0])    # m
+print(letras[0])   # m
+print(texto[1:3])  # es
+
+letras[0] = "p"
+print(letras)      # ['p', 'e', 's', 'a']
+print(texto)       # mesa
+```
+
+Puedes hacer `letras[0] = "p"`, pero no `texto[0] = "p"`. Para producir un texto distinto construyes otro. La similitud de algunas operaciones no convierte ambos tipos en el mismo.
+
+## 16. Listas: crear, consultar y modificar
+
+**Fuentes:** PDF, pp. 38–39, y `Ejemplo07_Listas/listas.py`. Una lista mantiene una secuencia de elementos, permite duplicados y puede modificarse. Sus elementos pueden ser de tipos distintos.
+
+```python
+datos = ["Maria", "Perez", 30, "soltera", "sin hijos"]
+estudios = ["estudiante", "medicina", 28010]
+
+primera = datos + estudios
+segunda = estudios + datos
+
+print(type(datos))      # <class 'list'>
+print(len(datos))       # 5
+print(segunda[2])       # 28010
+print(segunda[-2])      # soltera
+print(primera == segunda)  # False
+```
+
+`+` concatena y produce otra lista: el orden de los operandos importa. Para añadir mediante `+` una sola palabra necesitas una lista de un elemento, por ejemplo `datos + ["morena"]`; `datos + "morena"` no concatena una lista con texto.
+
+### 16.1. Índices positivos y negativos
+
+Con ocho elementos, los índices positivos van de cero a siete. `-1` designa el último y `-2` el penúltimo. `lista[len(lista) - 2]` y `lista[-2]` acceden al mismo elemento si existen al menos dos.
+
+Un índice individual inexistente produce `IndexError`. Un slice que excede los límites, en cambio, se ajusta a lo disponible. La longitud es una cantidad, no el último índice.
+
+### 16.2. Añadir: append, insert y extend
+
+```python
+colores = ["rojo", "verde"]
+colores.append("azul")
+colores.insert(0, "blanco")
+colores.extend(["negro", "rosa"])
+
+print(colores)
+# ['blanco', 'rojo', 'verde', 'azul', 'negro', 'rosa']
+```
+
+| Operación | Efecto |
+|---|---|
+| `lista.append(valor)` | Añade un elemento al final. |
+| `lista.insert(indice, valor)` | Inserta antes de la posición indicada. |
+| `lista.extend(iterable)` | Añade los elementos del iterable, uno a uno. |
+
+`append([1, 2])` añade una lista como un único elemento; `extend([1, 2])` añade dos enteros. `extend` no exige que el argumento sea una lista: también admite otros iterables. Si le pasas `"azul"`, añadirá sus cuatro letras. Es importante saber qué estructura quieres obtener.
+
+Estos tres métodos modifican la lista y devuelven `None`; no guardes su retorno esperando obtener la lista modificada.
+
+### 16.3. Borrar y sustituir
+
+```python
+nombres = ["Ana", "Luis", "Ana", "Noa"]
+del nombres[-1]
+nombres.remove("Ana")
+nombres[0] = "Vera"
+print(nombres)  # ['Vera', 'Ana']
+
+nombres.clear()
+print(nombres)  # []
+```
+
+| Operación | Qué selecciona | Matiz |
+|---|---|---|
+| `del lista[indice]` | Posición. | El índice debe existir. |
+| `lista.remove(valor)` | Primer valor coincidente. | Si no existe, produce `ValueError`. |
+| `lista[indice] = nuevo` | Posición existente. | Sustituye un elemento. |
+| `lista.clear()` | Todos los elementos. | Deja la misma lista vacía. |
+
+`remove` necesita el valor que quieres eliminar: `lista.remove()` no cumple la firma. `del` es una instrucción, no un método exclusivo de listas; en diccionarios se utiliza con una clave.
+
+**Complemento breve:** `lista.pop()` elimina y devuelve el último elemento; `lista.pop(indice)` hace lo mismo con una posición. A diferencia de `remove`, aquí recibes el elemento retirado. Se necesita una posición válida en una lista no vacía.
+
+### 16.4. Encontrar y contar
+
+```python
+asignaturas = ["medicina", "python", "medicina", "datos"]
+print(asignaturas.index("medicina"))     # 0
+print(asignaturas.index("medicina", 1))  # 2
+print(asignaturas.count("medicina"))     # 2
+print(asignaturas.count("arte"))         # 0
+
+if "arte" in asignaturas:
+    print(asignaturas.index("arte"))
+else:
+    print("No está en la lista")
+```
+
+`index(valor, inicio)` busca desde ese índice incluido y devuelve una posición referida a la lista completa. Si no encuentra el valor, produce `ValueError`. `count`, en cambio, devuelve cero si no lo encuentra.
+
+`in` y `not in` permiten comprobar presencia o ausencia antes de una operación. No indican el índice ni cuántas veces aparece el dato.
+
+### 16.5. Ordenar: sort frente a sorted
+
+```python
+colores = ["rojo", "azul", "verde"]
+ordenados = sorted(colores)
+print(ordenados)  # ['azul', 'rojo', 'verde']
+print(colores)    # ['rojo', 'azul', 'verde']
+
+retorno = colores.sort(reverse=True)
+print(colores)    # ['verde', 'rojo', 'azul']
+print(retorno)    # None
+```
+
+`sort` modifica la lista; `sorted` crea una lista nueva a partir de un iterable. `reverse=True` pide orden descendente. En tus notas aparece `reverse:True`; en una llamada se escribe con **igual**, `reverse=True`.
+
+**Matiz:** tener tipos distintos no impide siempre ordenar: enteros y decimales reales pueden compararse entre sí. Mezclar textos y números normalmente no tiene un orden definido en Python y produce `TypeError`. Para texto, el orden por defecto distingue mayúsculas, minúsculas y caracteres acentuados; no aplica automáticamente las reglas de ordenación de un diccionario español.
+
+## 17. Recorridos y else en bucles
+
+Las listas pueden recorrerse por elemento o por índice. Elige el índice cuando necesites la posición; si solo necesitas cada valor, el recorrido directo es más sencillo.
+
+```python
+colores = ["rojo", "verde", "azul"]
+
+for color in colores:
+    print(color, end=" ")
+print()
+
+for indice in range(len(colores)):
+    print(colores[indice], end=" ")
+print()
+
+indice = 0
+while indice < len(colores):
+    print(colores[indice], end=" ")
+    indice += 1
+print()
+```
+
+Cada recorrido muestra los tres colores. Si en el segundo escribes `print(indice)`, obtendrás cero, uno y dos: eso ocurre en tu `ejercicio3-1.py`, aunque la variable de índice se llame `color`.
+
+`print(color, sep=" - ")` recibe un solo argumento y no tiene dos valores entre los que insertar ese separador. Para separar llamadas sucesivas usa `end=" - "`; se añadirá también después del último elemento. Para cambiar la separación dentro de una misma llamada con varios argumentos sí sirve `sep`.
+
+### 17.1. Qué significa else después de for o while
+
+La cláusula `else` pertenece al bucle cuando está alineada con su encabezado. Se ejecuta si el `for` agota su iterable o si el `while` termina porque su condición es falsa, **sin ejecutar un `break` que salga de ese bucle**.
+
+No es obligatoria. Si solo quieres escribir una línea después de cualquier finalización normal del recorrido, puede bastar un `print()` fuera.
+
+```python
+buscado = "azul"
+colores = ["rojo", "verde", "azul"]
+
+for color in colores:
+    if color == buscado:
+        print("Encontrado")
+        break
+else:
+    print("No encontrado")
+```
+
+Con `"azul"`, se imprime «Encontrado» y no se ejecuta el `else`. Con `"negro"`, se agotaría la lista y se imprimiría «No encontrado». Con una lista vacía también se ejecutaría el `else`: no hubo un `break`.
+
+En un bucle anidado, cada `else` corresponde a su propio bucle según la indentación. La explicación «se ejecuta cuando ya no hay elementos» es útil para el recorrido habitual, pero incompleta si omitimos el efecto de `break`. Un `return` o una excepción también pueden interrumpir la ejecución antes de llegar al `else`.
+
+## 18. Slices: elegir fragmentos
+
+Un slice extrae una parte de una secuencia:
+
+`secuencia[inicio:fin:paso]`
+
+El inicio se incluye y el fin se excluye. Por defecto, el paso es uno. Si faltan los extremos, Python elige los adecuados al sentido del paso. Un paso cero no es válido.
+
+**Corrección de sintaxis:** no se escribe `slice(inicio:stop:step)` en estos ejemplos. La notación utilizada es la de corchetes después de la secuencia.
+
+### 18.1. Una secuencia estable para practicar
+
+Los resultados de esta tabla usan exactamente doce letras, de la a a la l:
+
+```python
+letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"]
+
+print(letras[3:7])    # ['d', 'e', 'f', 'g']
+print(letras[6:2:-1]) # ['g', 'f', 'e', 'd']
+print(letras[::-1])   # Todas al revés.
+```
+
+| Slice | Resultado con esa lista |
+|---|---|
+| `letras[:]` | Todos los elementos, en una lista nueva. |
+| `letras[-4:]` | i, j, k, l. |
+| `letras[:5]` | a, b, c, d, e. |
+| `letras[3:7]` | d, e, f, g. |
+| `letras[6:2]` | Lista vacía: paso positivo hacia un fin situado antes. |
+| `letras[6:2:-1]` | g, f, e, d. |
+| `letras[-6:-10:-1]` | g, f, e, d. |
+| `letras[::-1]` | l, k, j, i, h, g, f, e, d, c, b, a. |
+| `letras[::-2]` | l, j, h, f, d, b. |
+| `letras[::2]` | a, c, e, g, i, k. |
+| `letras[-2:]` | k, l. |
+| `letras[-1:-4:-1]` | l, k, j. |
+| `letras[:-1:2]` | a, c, e, g, i, k. |
+
+Un índice negativo se interpreta con respecto a la longitud actual. No significa un número fijo desde el principio. Los slices devuelven los elementos según su posición, no según su valor.
+
+### 18.2. La equivalencia de índices negativos depende de la longitud
+
+En tus notas y en `listas.py` aparecen `lista[-6:-10:-1]` y `lista[-6:2:-1]` como si fueran siempre equivalentes. Lo serían para una lista de longitud doce, porque `-10` se corresponde con el índice dos.
+
+Sin embargo, la lista de `listas.py` tiene **once elementos** en ese momento. Allí `-10` se corresponde con el índice uno y los dos slices son distintos:
+
+| Slice en ese estado del archivo | Valores |
+|---|---|
+| `lista[-6:-10:-1]` | `['Perez', 'Maria', 28010, 'medicina']` |
+| `lista[-6:2:-1]` | `['Perez', 'Maria', 28010]` |
+
+No memorices equivalencias sin revisar primero la longitud. También recuerda que `-1` como fin de un slice es el índice del último elemento, no una instrucción para «incluir el último al bajar». Para invertir toda la secuencia, `[::-1]` evita ese problema.
+
+## 19. Ejercicio completo de colores
+
+**Fuente:** `Ejemplo07_Listas/ejercicio.py`, relacionado con tu `ejercicio3-1.py`. Se construye y modifica una lista; el resultado de cada consulta depende de las operaciones anteriores.
+
+```python
+colores = ["rojo", "verde", "azul"]
+print(type(colores))
+print(colores)
+
+for color in colores:
+    print(color, end=" ")
+print()
+
+for indice in range(len(colores)):
+    print(colores[indice], end=" ")
+print()
+
+indice = 0
+while indice < len(colores):
+    print(colores[indice], end=" ")
+    indice += 1
+print()
+
+print(colores[1])
+del colores[2]
+mas_colores = colores + ["blanco", "negro", "rosa", "azul"]
+mas_colores.append("naranja")
+mas_colores.insert(0, "marron")
+print(len(mas_colores))
+print(mas_colores[-3])
+
+mas_colores.sort()
+print(mas_colores)
+mas_colores.sort(reverse=True)
+print(mas_colores)
+
+print(mas_colores[-2:])
+print(mas_colores[-1:-4:-1])
+print(mas_colores[:3])
+print(mas_colores[1:4])
+print(mas_colores[:-1:2])
+
+mas_colores.clear()
+print(mas_colores)
+```
+
+### 19.1. Seguir el estado
+
+| Momento | Contenido relevante |
+|---|---|
+| Lista inicial | `['rojo', 'verde', 'azul']` |
+| Después de borrar azul | `['rojo', 'verde']` |
+| Después de unir cuatro colores | `['rojo', 'verde', 'blanco', 'negro', 'rosa', 'azul']` |
+| Después de append e insert | `['marron', 'rojo', 'verde', 'blanco', 'negro', 'rosa', 'azul', 'naranja']` |
+| Longitud | 8. |
+| Antepenúltimo antes de ordenar | rosa. |
+| Orden ascendente | `['azul', 'blanco', 'marron', 'naranja', 'negro', 'rojo', 'rosa', 'verde']` |
+| Orden descendente | `['verde', 'rosa', 'rojo', 'negro', 'naranja', 'marron', 'blanco', 'azul']` |
+
+Los slices del archivo de la profesora se hacen **después de ordenar en descendente**:
+
+| Consulta | Resultado |
+|---|---|
+| Dos últimos | `['blanco', 'azul']` |
+| Del último al antepenúltimo | `['azul', 'blanco', 'marron']` |
+| Tres primeros | `['verde', 'rosa', 'rojo']` |
+| Del segundo al cuarto | `['rosa', 'rojo', 'negro']` |
+| Del primero al penúltimo, de dos en dos | `['verde', 'rojo', 'naranja', 'blanco']` |
+| Después de clear | `[]` |
+
+### 19.2. Diferencias en tu ejercicio
+
+Tu versión añade `"maranja"`, con una errata, y solo ordena en ascendente antes de los slices. También consulta el antepenúltimo después de ordenar, mientras la profesora lo hace antes. Por tanto, algunas salidas serán distintas aunque la notación de los slices sea correcta.
+
+Además, el recorrido con `range` imprime la variable que contiene el índice: muestra números, no colores. La forma corregida utiliza `colores[indice]`. Tus originales se conservan para que puedas comparar estas diferencias.
+
+## 20. Listas multidimensionales
+
+**Fuentes:** p. 40 del PDF y `listas_multidimensionales.py`. Una lista puede contener otras listas. Una matriz sencilla se representa como una lista de filas.
+
+```python
+matriz = [[2, 7, 4], [8, 1, 6], [3, 9, 5]]
+
+print(matriz[0])     # [2, 7, 4]
+print(matriz[0][2])  # 4
+print(matriz[2][1])  # 9
+print(matriz[1][0])  # 8
+
+for fila in matriz:
+    for numero in fila:
+        print(numero, end="\t")
+    print()
+
+for indice_fila in range(len(matriz)):
+    for indice_columna in range(len(matriz[indice_fila])):
+        print(matriz[indice_fila][indice_columna], end="\t")
+    print()
+```
+
+El primer índice selecciona la fila y el segundo un elemento de esa fila. La tabla representa los mismos datos:
+
+| Fila / columna | 0 | 1 | 2 |
+|---|---|---|---|
+| 0 | 2 | 7 | 4 |
+| 1 | 8 | 1 | 6 |
+| 2 | 3 | 9 | 5 |
+
+La versión por valores necesita dos recorridos para visitar cada número; la de índices utiliza el tamaño de cada fila. Python también permite listas anidadas cuyas filas tienen tamaños distintos: no garantiza una matriz rectangular.
+
+**Corrección de tus notas:** se escribe `matriz[indice_fila]`, no `matriz(indice_fila)`. Los corchetes acceden a un elemento; los paréntesis intentan llamar a un objeto como función.
+
+En la p. 40 del PDF también hay una lista que mezcla textos y una sublista. No hace falta que todos los elementos tengan la misma profundidad. Por ejemplo, `equipos[3][1]` primero selecciona la sublista en el índice tres y luego su segundo elemento. Esto es una lista anidada, aunque no forme una tabla rectangular.
+
+## 21. Comprensiones de listas
+
+**Fuente:** `compresion_listas.py`. El nombre habitual es **comprensión de listas**. Es una forma de construir una lista mediante un recorrido y, opcionalmente, un filtro.
+
+### 21.1. Transformar cada elemento
+
+```python
+palabras = ["casa", "mesa", "manzana", "pijama"]
+longitudes = []
+
+for palabra in palabras:
+    longitudes.append(len(palabra))
+
+por_comprension = [len(palabra) for palabra in palabras]
+print(longitudes)       # [4, 4, 7, 6]
+print(por_comprension)  # [4, 4, 7, 6]
+```
+
+En `[len(palabra) for palabra in palabras]`, lee primero el recorrido: «por cada palabra de palabras»; después la expresión de la izquierda: «guarda su longitud».
+
+La lista de entrada no se modifica. Se construye otra con los resultados de la expresión.
+
+### 21.2. Filtrar elementos
+
+```python
+pares = []
+for numero in range(0, 21):
+    if numero % 2 == 0:
+        pares.append(numero)
+
+por_comprension = [numero for numero in range(0, 21) if numero % 2 == 0]
+print(pares)
+print(por_comprension)
+# Ambas: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+```
+
+El `if` al final filtra qué elementos se incorporan. Si un elemento no cumple, no se añade nada por él. La longitud de la salida puede ser menor que la del recorrido.
+
+**Correcciones de tus notas:** se llama a `range(0, 21)` con paréntesis, no con corchetes; las variables no pueden contener espacios; en la versión larga, el `if` necesita `:` y su bloque. La comprensión no lleva esos dos puntos.
+
+Usa esta forma cuando la transformación sea breve y legible. Si necesitas varios pasos, diagnósticos o condiciones difíciles de leer, el bucle explícito sigue siendo una buena solución.
+
+## 22. Tuplas y operaciones compartidas
+
+**Fuentes:** p. 41 del PDF y `Ejemplo08_Tuplas/tuplas.py`. Una tupla es una secuencia ordenada que permite duplicados. No podemos reasignar, añadir o borrar sus posiciones como hacemos con una lista.
+
+```python
+dias = ("lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo")
+
+print(type(dias))             # <class 'tuple'>
+print(dias[0])                # lunes
+print(len(dias))              # 7
+print(dias.count("lunes"))    # 1
+print(dias.index("viernes"))  # 4
+print(dias.index("viernes", 2))  # 4
+print(dias[:5])               # Los cinco días laborables.
+print(dias[::-1])             # Los siete días al revés.
+```
+
+`dias.index("viernes", 5)` no encontraría la palabra desde ese punto y produciría `ValueError`. Como en listas, `count` cuenta apariciones e `index` busca una posición. Los slices funcionan igual, pero devuelven tuplas.
+
+No existen operaciones válidas como `dias.append(...)`, `del dias[0]` o `dias[0] = ...`: o falta el método o se intenta modificar una posición inmutable.
+
+### 22.1. Una tupla de un elemento necesita una coma
+
+```python
+texto = ("otro_sabado")
+un_elemento = ("otro_sabado",)
+print(type(texto))        # <class 'str'>
+print(type(un_elemento))  # <class 'tuple'>
+
+numeros = 1, 2, 3
+print(type(numeros))      # <class 'tuple'>
+```
+
+Los paréntesis por sí solos también sirven para agrupar expresiones. La coma es la que forma la tupla no vacía en estos casos. No estamos «engañando al intérprete», como dice el comentario de clase: estamos usando la sintaxis prevista.
+
+### 22.2. Concatenar, convertir y repetir
+
+```python
+dias = ("lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo")
+otra_tupla = dias + ("otro_sabado",)
+print(otra_tupla)
+
+con_repeticiones = dias + tuple(["sabado", "domingo"])
+como_lista = list(con_repeticiones)
+print(como_lista)
+
+numeros = (1, 2, 3, 4, 5)
+print(numeros * 2)
+# (1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
+print("-" * 5)  # -----
+```
+
+`+` crea otra tupla; no modifica las posiciones de la original. `* 2` repite la secuencia, no multiplica por dos cada número. El ejemplo del separador usa la misma idea con una cadena.
+
+Convertir una tupla en lista permite operar sobre la lista creada, pero no cambia el tipo del objeto original. Si concatenas tuplas, el orden de los operandos también importa.
+
+### 22.3. Funciones incorporadas sobre colecciones
+
+```python
+numeros = (1, 2, 3, 4, 5)
+print(len(numeros))                  # 5
+print(min(numeros))                  # 1
+print(max(numeros))                  # 5
+print(sum(numeros))                  # 15
+print(sorted(numeros, reverse=True)) # [5, 4, 3, 2, 1]
+print(numeros)                       # La tupla no ha cambiado.
+```
+
+Estas funciones no son métodos exclusivos de tuplas. Pueden recibir distintos iterables, siempre que sus elementos tengan sentido para la operación. `sorted` devuelve una lista aunque reciba una tupla o un conjunto; `sum` necesita datos que se puedan sumar; `min` y `max` necesitan comparaciones válidas y, en su forma sencilla, al menos un elemento.
+
+**Matiz al comentario «funciones universales»:** no significa que cualquier operación sirva con cualquier contenido. `sum(["a", "b"])` no concatena esas cadenas. En un diccionario, el recorrido predeterminado proporciona claves; para sumar notas habrá que pasar sus valores.
+
+Una tupla con un objeto mutable dentro puede contener cambios de ese objeto. Su inmutabilidad impide sustituir la posición de la tupla, no congela recursivamente todo lo que haya dentro. Se retoma la idea al hablar de referencias.
+
+## 23. Conjuntos y operaciones de conjuntos
+
+**Fuentes:** p. 42 del PDF y los dos archivos del ZIP 09. Un conjunto agrupa elementos únicos y sirve especialmente para comprobar pertenencia o comparar grupos.
+
+```python
+frutas = {"manzana", "naranja", "pera", "naranja", "platano"}
+print(len(frutas))  # 4: naranja no se conserva dos veces.
+
+vacio = set()
+print(type(vacio))  # <class 'set'>
+print(type({}))     # <class 'dict'>
+
+frutas.add("fresas")
+frutas.remove("platano")
+print(len(frutas))  # 4
+
+otro = frutas.copy()
+resultado = frutas.union({"melon", "sandia"})
+print(sorted(resultado))
+print("fresas" in frutas)       # True
+print("maracuya" in frutas)     # False
+print("melocoton" not in frutas)  # True
+
+for fruta in sorted(resultado):
+    print(fruta, end=" ")
+print()
+
+como_tupla = tuple(resultado)
+como_lista = list(resultado)
+frutas.clear()
+print(frutas)  # set()
+print(len(otro))  # 4: la copia conserva sus elementos.
+```
+
+`sorted` se usa aquí para presentar un orden predecible, no porque el conjunto adquiera posiciones. El archivo original recorre el conjunto directamente: el orden que veas puede variar. Convertirlo con `list` o `tuple` tampoco garantiza recuperar el orden de inserción.
+
+### 23.1. Qué cambia respecto a una lista
+
+- No se accede por `frutas[0]` ni mediante slices.
+- `add` incorpora un elemento; si ya está, no crea un duplicado.
+- `remove` quita un elemento por su valor y produce `KeyError` si falta.
+- **Complemento:** `discard(valor)` también quita un elemento, pero no falla si ya está ausente.
+- No se utiliza `+` para unir conjuntos; se usa `union` o `|`.
+- `clear` vacía el conjunto y `copy` crea una copia independiente de su contenedor.
+
+Los conjuntos son mutables, pero no se «modifica el elemento de una posición». Para cambiar un valor se elimina uno y se añade otro.
+
+**Restricción importante:** los elementos deben ser hashables, es decir, admitir el mecanismo que Python utiliza para identificarlos en esta estructura. Para este módulo basta recordar que números, textos y tuplas de elementos hashables sirven; listas, diccionarios y conjuntos mutables no pueden ser elementos de un conjunto. Por tanto, el comentario «pueden contener cualquier tipo» necesita ese matiz.
+
+### 23.2. Intersección, diferencia, unión y diferencia simétrica
+
+El archivo `operaciones_conjuntos.py` compara estos dos conjuntos:
+
+```python
+a = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+b = {0, 2, 4, 6, 8, 10}
+
+print(sorted(a.intersection(b)))         # [2, 4, 6, 8]
+print(sorted(a & b))                     # Lo mismo.
+print(sorted(a.difference(b)))           # [1, 3, 5, 7, 9]
+print(sorted(a - b))                     # Lo mismo.
+print(sorted(b - a))                     # [0, 10]
+print(sorted(a.union(b)))                # [0, 1, ..., 10]
+print(sorted(a | b))                     # Lo mismo.
+print(sorted(a.symmetric_difference(b))) # [0, 1, 3, 5, 7, 9, 10]
+print(sorted(a ^ b))                     # Lo mismo.
+```
+
+| Operación | Significado | ¿Importa invertir los operandos? |
+|---|---|---|
+| `a & b` | Elementos comunes. | No para el resultado de esta operación. |
+| `a - b` | Elementos de a que no están en b. | Sí. |
+| `a \| b` | Todos los elementos, sin duplicados. | No para el contenido. |
+| `a ^ b` | Elementos presentes solo en uno de los dos. | No para el contenido. |
+
+Los métodos utilizados aquí devuelven otros conjuntos y no vacían ni reescriben `a` o `b`. En tus proyectos, la diferencia permite localizar identificadores pendientes; la intersección permite comprobar coincidencias entre dos fuentes.
+
+## 24. Diccionarios: registros con claves
+
+**Fuentes:** p. 43 del PDF y `Ejemplo10_Diccionarios/diccionarios.py`. Un diccionario relaciona claves con valores. La clave describe cómo encontrar el dato: por ejemplo, el nombre de un alumno o el campo `"nota"` de un registro.
+
+```python
+alumnos = {"Juan": 6.4, "Maria": 8.3, "Luis": 6.4, "Adolfo": 7.1, "Maria": 9.3}
+print(type(alumnos))     # <class 'dict'>
+print(len(alumnos))      # 4, no 5.
+print(alumnos["Maria"])  # 9.3: prevalece el último valor escrito.
+print(alumnos["Luis"])   # 6.4
+
+print(alumnos.keys())
+print(alumnos.values())
+print(alumnos.items())
+```
+
+Las claves no coexisten repetidas: la segunda entrada de `"Maria"` sustituye su valor. Juan y Luis sí pueden tener la misma nota. Sustituir el valor de una clave existente no la mueve al final del orden de inserción.
+
+| Consulta | Qué proporciona |
+|---|---|
+| `alumnos.keys()` | Vista de las claves: Juan, Maria, Luis y Adolfo. |
+| `alumnos.values()` | Vista de los valores: 6.4, 9.3, 6.4 y 7.1. |
+| `alumnos.items()` | Vista de las parejas clave–valor. Cada pareja se recorre como una tupla. |
+
+Estas vistas no son listas independientes. Si necesitas una lista, puedes construirla, por ejemplo, con `list(alumnos.keys())`. Los cambios del diccionario se reflejan en sus vistas.
+
+**Matiz de acceso:** `alumnos[0]` buscaría la clave numérica cero; no significa «primer alumno». Un diccionario puede tener claves enteras, pero esas claves no son posiciones. Las claves deben ser hashables, como los elementos de un conjunto; sus valores sí pueden ser listas, diccionarios u otros objetos.
+
+### 24.1. Acceso directo y get
+
+```python
+alumnos = {"Juan": 6.4, "Maria": 9.3, "Luis": 6.4}
+
+print(alumnos["Luis"])                 # 6.4
+print(alumnos.get("Luis"))            # 6.4
+print(alumnos.get("Luissssss"))       # None
+print(alumnos.get("Luissssss", "No registrado"))  # No registrado
+
+if "Luis" in alumnos:
+    print("Existe esa clave")
+```
+
+El acceso con una clave ausente entre corchetes produce `KeyError`. `get` devuelve `None` si falta, o el valor por defecto que indiques. Este segundo argumento es un complemento práctico a la versión de clase.
+
+`in` comprueba **claves**, no valores. Para buscar una nota entre los valores podrías comprobar `6.4 in alumnos.values()`.
+
+En datos reales, `None` también puede ser un valor existente. Si necesitas distinguir una clave ausente de una clave cuyo valor es `None`, comprueba la pertenencia de la clave.
+
+### 24.2. Añadir, modificar, borrar y recuperar el último par
+
+```python
+alumnos = {"Juan": 6.4, "Maria": 9.3, "Luis": 6.4, "Adolfo": 7.1}
+del alumnos["Adolfo"]
+
+alumnos["Pepito"] = 3.5
+alumnos["Pepito"] = 5
+retirado = alumnos.popitem()
+print(retirado)  # ('Pepito', 5)
+
+alumnos.update({"Pepito": 5})
+print(alumnos)
+# {'Juan': 6.4, 'Maria': 9.3, 'Luis': 6.4, 'Pepito': 5}
+```
+
+La misma sintaxis `diccionario[clave] = valor` añade si la clave falta y modifica si ya existe. `update` incorpora varias parejas y sustituye los valores de las claves coincidentes; modifica el diccionario y devuelve `None`.
+
+En Python actual, `popitem` elimina y devuelve la pareja insertada más recientemente. No elimina necesariamente el valor mayor ni la clave que modificaste más recientemente. Si está vacío, produce `KeyError`.
+
+`del diccionario[clave]` elimina por clave; si falta, también produce `KeyError`. `clear()` elimina todas las parejas y deja `{}`.
+
+### 24.3. Ordenar una presentación no ordena el objeto original
+
+```python
+alumnos = {"Juan": 6.4, "Maria": 9.3, "Luis": 6.4, "Pepito": 5}
+
+print(sorted(alumnos))               # ['Juan', 'Luis', 'Maria', 'Pepito']
+print(sorted(alumnos, reverse=True)) # ['Pepito', 'Maria', 'Luis', 'Juan']
+print(sorted(alumnos.values()))      # [5, 6.4, 6.4, 9.3]
+print(list(alumnos))                 # ['Juan', 'Maria', 'Luis', 'Pepito']
+
+for nombre in sorted(alumnos):
+    print(nombre, alumnos[nombre])
+```
+
+El comentario de clase dice «ordenar el diccionario», pero esas llamadas a `sorted` devuelven **listas**. El diccionario conserva su orden de inserción.
+
+Ordenar solo los valores produce una lista de notas y no conserva por sí sola qué alumno corresponde a cada una. Para una presentación por nombre, el último recorrido conserva la relación porque sigue consultando cada clave en el diccionario.
+
+### 24.4. Tres recorridos equivalentes en lo que muestran
+
+```python
+alumnos = {"Juan": 6.4, "Maria": 9.3, "Luis": 6.4}
+
+for nombre in alumnos:
+    print(nombre, alumnos[nombre])
+
+for pareja in alumnos.items():
+    print(pareja[0], pareja[1])
+
+for nombre, nota in alumnos.items():
+    print(nombre, nota)
+```
+
+El primero recorre claves. El segundo recibe cada tupla y la indexa. El tercero desempaqueta la pareja en dos variables, igual que desempaquetábamos los resultados de una función.
+
+### 24.5. Otras formas de crearlos
+
+```python
+por_nombres = dict(Juan=6.4, Maria=8.3, Luis=6.4, Adolfo=7.1)
+por_parejas = dict([("Juan", 6.4), ("Maria", 9.3), ("Luis", 6.4), ("Pepito", 5)])
+
+print(por_nombres["Maria"])  # 8.3
+print(por_parejas["Maria"])  # 9.3
+
+por_nombres.clear()
+print(por_nombres)           # {}
+```
+
+La primera forma usa argumentos por nombre y crea claves de texto. No puedes repetir un mismo argumento por nombre en esa llamada. La segunda construye el diccionario a partir de parejas; permite utilizar claves que no serían nombres válidos de parámetros.
+
+La guía llama «corchetes» a `{}`: para distinguir la notación, aquí hablamos de **llaves** para conjuntos y diccionarios, **corchetes** para listas e índices y **paréntesis** para llamadas y agrupaciones.
+
+## 25. Funciones y objetos mutables
+
+Esta parte une las funciones con las colecciones. No es necesario modificar una variable global para que dos nombres permitan ver cambios en el mismo objeto.
+
+### 25.1. Compartir una lista no equivale a copiarla
+
+```python
+original = ["Vera", "Noa"]
+alias = original
+copia = original.copy()
+
+alias.append("Laura")
+print(original)  # ['Vera', 'Noa', 'Laura']
+print(alias)     # ['Vera', 'Noa', 'Laura']
+print(copia)     # ['Vera', 'Noa']
+```
+
+La asignación `alias = original` no crea otra lista. Los dos nombres hacen referencia a la misma. `copy()` y el slice `[:]` crean otra lista superficial: un contenedor distinto con referencias a los mismos elementos.
+
+### 25.2. Modificar el objeto recibido o devolver otra lista
+
+```python
+def anadir_en_la_misma(lista, elemento) -> None:
+    lista.append(elemento)
+
+def crear_con_elemento(lista, elemento) -> list:
+    nueva = lista.copy()
+    nueva.append(elemento)
+    return nueva
+
+tareas = ["leer"]
+anadir_en_la_misma(tareas, "revisar")
+otras_tareas = crear_con_elemento(tareas, "archivar")
+
+print(tareas)        # ['leer', 'revisar']
+print(otras_tareas)  # ['leer', 'revisar', 'archivar']
+```
+
+La primera modifica la lista recibida y devuelve `None`. La segunda crea otra y la devuelve. Ambas pueden ser correctas, pero el comportamiento debe quedar claro para quien utilice la función.
+
+### 25.3. Las copias superficiales comparten elementos anidados
+
+```python
+matriz = [[1, 2], [3, 4]]
+superficial = matriz.copy()
+por_filas = [fila[:] for fila in matriz]
+
+superficial[0][0] = 99
+print(matriz)    # [[99, 2], [3, 4]]
+print(por_filas) # [[1, 2], [3, 4]]
+```
+
+La copia superficial comparte las filas. En este ejemplo, copiar también cada fila separa las listas de esos dos niveles. No es una copia profunda universal para cualquier estructura: si dentro de cada fila hubiera otros objetos mutables, habría que considerar esos niveles también.
+
+### 25.4. Precaución con listas como valor por defecto
+
+**Complemento práctico para reutilizar funciones.** Un valor por defecto se prepara al ejecutar la definición, no de nuevo en cada llamada. Un parámetro definido como `tareas=[]` puede compartir esa lista entre llamadas.
+
+Una forma de crear una lista nueva cuando el usuario no proporciona ninguna es:
+
+```python
+def anadir_tarea(tarea, tareas=None):
+    if tareas is None:
+        tareas = []
+    tareas.append(tarea)
+    return tareas
+
+print(anadir_tarea("leer"))    # ['leer']
+print(anadir_tarea("revisar")) # ['revisar']
+```
+
+`is None` comprueba si ese valor es precisamente `None`. Si pasas explícitamente una lista, esta función la modifica. El objetivo del ejemplo es evitar compartir por accidente una lista por defecto, no prometer que nunca modificará datos recibidos.
+
+## 26. Aplicaciones integradas a tus proyectos
+
+**Complementos opcionales con datos ficticios.** Reutilizan las estructuras del módulo sin conectar APIs, enviar mensajes ni guardar archivos.
+
+### 26.1. Devolver un registro que distingue ausencia de datos y resultado cero
+
+La media de clase devolvía cero cuando no había notas. Para un sistema de seguimiento o una evaluación puede interesar distinguir los dos casos:
+
+```python
+def resumir_notas(nombre: str, *notas) -> dict:
+    if len(notas) == 0:
+        return {"nombre": nombre.upper(), "cantidad": 0, "media": None}
+
+    total = 0
+    for nota in notas:
+        total += nota
+
+    return {
+        "nombre": nombre.upper(),
+        "cantidad": len(notas),
+        "media": total / len(notas),
+    }
+
+sin_datos = resumir_notas("Jorge")
+con_cero = resumir_notas("Jorge", 0)
+con_notas = resumir_notas("Jorge", 6, 9)
+
+print(sin_datos["media"])  # None
+print(con_cero["media"])   # 0.0
+print(con_notas["media"])  # 7.5
+```
+
+Los campos nombrados facilitan interpretar la salida sin memorizar que «la posición uno es la media». Se presuponen notas numéricas válidas. Un diccionario de Python no es todavía un texto JSON: la serialización se estudiará en el puente de integraciones.
+
+### 26.2. Preparar un lote editorial con listas, conjuntos y diccionarios
+
+```python
+def preparar_lote(documentos: list, ids_ya_procesados: set) -> list:
+    pendientes = []
+    vistos = ids_ya_procesados.copy()
+
+    for documento in documentos:
+        identificador = documento["id"]
+        if identificador in vistos:
+            continue
+        if documento["texto"] == "":
+            continue
+        pendientes.append(documento.copy())
+        vistos.add(identificador)
+
+    return pendientes
+
+documentos = [
+    {"id": "A", "texto": "Texto ya revisado"},
+    {"id": "B", "texto": "Entrevista pendiente"},
+    {"id": "B", "texto": "Otra entrada con el mismo identificador"},
+    {"id": "C", "texto": ""},
+]
+procesados = {"A"}
+lote = preparar_lote(documentos, procesados)
+
+print(lote)        # [{'id': 'B', 'texto': 'Entrevista pendiente'}]
+print(procesados)  # {'A'}: el conjunto recibido no se ha modificado.
+```
+
+La lista conserva el orden de entrada; los diccionarios identifican los campos de cada documento; el conjunto permite excluir identificadores repetidos. La copia del conjunto evita modificar el historial recibido.
+
+El identificador B se incorpora una sola vez, también si está duplicado dentro de la misma tanda. El C se descarta porque su texto está vacío. La función presupone que existen `id` y `texto` y que sus tipos son los esperados. El texto formado solo por espacios no se considera vacío en esta regla; la limpieza detallada se añadirá con métodos de texto.
+
+Esto prepara datos en memoria. Evitar duplicados en una operación real y persistente exige más controles, que se estudiarán con idempotencia, bases de datos y errores de integración.
+
+### 26.3. Comparar resultados entre versiones
+
+```python
+antes = {"documento_1", "documento_2", "documento_3"}
+despues = {"documento_2", "documento_3", "documento_4"}
+
+print("Se mantienen:", sorted(antes & despues))
+print("Desaparecen:", sorted(antes - despues))
+print("Se añaden:", sorted(despues - antes))
+```
+
+Es una forma sencilla de revisar si un cambio en un pipeline pierde o incorpora registros. La comparación de identificadores no demuestra que su contenido sea correcto, pero sí permite detectar diferencias concretas para investigarlas.
+
+Para tus automatizaciones, refuerza especialmente **listas de diccionarios, acceso a campos, pertenencia mediante conjuntos y funciones con entradas y salidas claras**. Serán bases directas para interpretar respuestas de servicios y trabajar con lotes.
+
+## 27. Repaso, correcciones y fuentes
+
+### 27.1. Ruta rápida para repasar el módulo
+
+| Si necesitas recordar… | Ve a… |
+|---|---|
+| Qué imprime una función y qué devuelve | Sección 4. |
+| Valores por defecto y argumentos por nombre | Secciones 3.3–3.4. |
+| `*notas` en definición y llamada | Secciones 10.4–10.5. |
+| Qué colección elegir | Sección 15. |
+| Añadir, borrar, buscar y ordenar una lista | Sección 16. |
+| Por qué aparece `else` después de un bucle | Sección 17.1. |
+| Elegir índices y dirección de un slice | Sección 18. |
+| Seguir el ejercicio de colores paso a paso | Sección 19. |
+| Dos índices y dos recorridos | Sección 20. |
+| Transformar o filtrar con una comprensión | Sección 21. |
+| Coma de tupla, conversión y funciones incorporadas | Sección 22. |
+| Elementos únicos y comparación de grupos | Sección 23. |
+| Claves, `get`, `items` y actualizaciones | Sección 24. |
+| Si se modifica el original o una copia | Sección 25. |
+
+La ruta resume el material aportado, no predice preguntas del examen. Las aplicaciones a tu ámbito son complementos separados de los ejemplos de clase.
+
+### 27.2. Correcciones que conviene conservar como aprendizaje
+
+| Idea o detalle encontrado | Explicación correcta |
+|---|---|
+| Los textos son listas. | Son secuencias `str` inmutables; comparten algunas operaciones. |
+| `len` es una propiedad de la colección. | En estos ejemplos es una función que se llama como `len(objeto)`. |
+| `reverse:True` en la llamada. | Se escribe `reverse=True`. |
+| Todas las mezclas de tipos impiden ordenar. | Depende de si sus elementos se pueden comparar; enteros y decimales reales sí son comparables. |
+| `sep` separa las vueltas del bucle. | Separa argumentos de una llamada; `end` controla su final. |
+| `else` del bucle se ejecuta siempre al terminar. | No se ejecuta si se sale de ese bucle con `break`; también puede haber otras interrupciones. |
+| Dos slices con extremos negativos son siempre equivalentes. | Depende de la longitud actual. En `listas.py`, los dos ejemplos citados no coinciden. |
+| `matriz(indice_fila)` accede a una fila. | Se necesita `matriz[indice_fila]`. |
+| La coma de una tupla «engaña» al intérprete. | Es parte de la sintaxis que construye esa tupla. |
+| `*args` recoge una lista. | Recoge una tupla de argumentos posicionales. |
+| Los conjuntos admiten elementos de cualquier tipo. | Los elementos deben ser hashables. |
+| `del` solo sirve para borrar índices. | También elimina entradas de diccionario por clave y tiene otros usos. |
+| `sorted(alumnos)` ordena el diccionario. | Devuelve una lista de claves; no cambia el objeto original. |
+| Copiar una lista copia profundamente sus elementos. | Las copias usadas aquí son superficiales. |
+| Cualquier salida de una función coincide con su anotación. | Las anotaciones no validan el retorno en ejecución. |
+
+Estas aclaraciones no implican que todos los ejemplos estén mal. Distinguen la operación real de comentarios simplificados o de apuntes tomados con rapidez.
+
+### 27.3. Inventario de todos los ejemplos del módulo
+
+Se han revisado los **16 archivos Python** de los ZIP 06–10. Cada archivo tiene desarrollo o explicación de sus operaciones en las secciones indicadas.
+
+| ZIP | Archivo | Dónde se desarrolla |
+|---|---|---|
+| 06 | `crear_funciones.py` | Secciones 1–5. |
+| 06 | `ejercicio1.py` | Sección 6. |
+| 06 | `ejercicio2.py` | Sección 7. |
+| 06 | `ejercicio3.py` | Sección 8. |
+| 06 | `ejercicio4.py` | Sección 9. |
+| 06 | `args_defecto.py` | Sección 3.4. |
+| 06 | `return_varios.py` | Sección 10.3. |
+| 06 | `numero_variable_args.py` | Secciones 10.2, 10.4 y 10.5. |
+| 07 | `listas.py` | Secciones 15–18. |
+| 07 | `ejercicio.py` | Sección 19. |
+| 07 | `listas_multidimensionales.py` | Sección 20. |
+| 07 | `compresion_listas.py` | Sección 21. |
+| 08 | `tuplas.py` | Sección 22. |
+| 09 | `conjuntos.py` | Secciones 23 y 23.1. |
+| 09 | `operaciones_conjuntos.py` | Sección 23.2. |
+| 10 | `diccionarios.py` | Sección 24. |
+
+Los ocho archivos de funciones incluyen tres incorporaciones respecto a los apuntes del 18 de noviembre. No se presentan esas incorporaciones como meras previsiones del PDF: ya forman parte del ZIP actualizado.
+
+### 27.4. Material utilizado
+
+- [Guía IFCD0062 Fundamentos programacion Python.pdf](<../../IFCD0062 Fundamentos programacion Python.pdf>): módulo 3, pp. 34–43; se ha verificado que la p. 44 comienza el módulo 4.
+- [Ejemplo06_Funciones.zip](../../Ejemplo06_Funciones.zip), versión local revisada el 23 de noviembre de 2026.
+- [Ejemplo07_Listas.zip](../../Ejemplo07_Listas.zip).
+- [Ejemplo08_Tuplas.zip](../../Ejemplo08_Tuplas.zip).
+- [Ejemplo09_Conjuntos.zip](../../Ejemplo09_Conjuntos.zip).
+- [Ejemplo10_Diccionarios.zip](../../Ejemplo10_Diccionarios.zip).
+- [modulo3.md](modulo3.md) y [ejercicio3-1.py](ejercicio3-1.py): tus dudas, comentarios y práctica de listas.
+- [Apuntes ampliados del módulo 2](../modulo2/modulo2_apuntes_ampliados.md): control de flujo y recorridos.
+- [MASTER-PERSONALIZADO-IA.md](../../../../MASTER-PERSONALIZADO-IA.md) y [ENCAJE-TECNOFOR-MASTER.md](../../../../ENCAJE-TECNOFOR-MASTER.md): orientación de las aplicaciones prácticas.
+
+Apoyo oficial para comprobar matices, sin lectura adicional obligatoria:
+
+- [Tutorial: funciones y control de flujo](https://docs.python.org/es/3.14/tutorial/controlflow.html).
+- [Tutorial: listas, comprensiones, tuplas, conjuntos y diccionarios](https://docs.python.org/es/3.14/tutorial/datastructures.html).
+- [Referencia: secuencias, slices, conjuntos y diccionarios](https://docs.python.org/es/3.14/library/stdtypes.html).
+- [Anotaciones de tipo y su alcance](https://docs.python.org/es/3.14/library/typing.html).
+
+### 27.5. Qué queda para los módulos posteriores
+
+El módulo 4 desarrolla excepciones, módulos, paquetes y métodos de texto; el 5, clases y archivos. Este documento reconoce los errores que pueden aparecer, pero no adelanta su tratamiento completo. APIs, JSON, autenticación y persistencia aplicada se incorporarán después en el puente del máster.
+
+La actualización actual completa el Markdown del módulo 3. El PDF se preparará en una tarea posterior.
+
