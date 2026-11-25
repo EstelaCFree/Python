@@ -52,3 +52,6 @@ print(div(9, 3))
 La primera forma tiene la desventaja de requerir el prefijo del módulo, aunque a la vez eso es útil para saber de dónde sale esa función si de repente aparece 200 líneas más abajo. Pero a la vez tienes que descargar todas, que no siempre hace falta.
 
 
+
+
+
